@@ -54,15 +54,8 @@ namespace ChuanGoing.Web.API.Controllers
             using (var connection = _repository.DbConnection)
             {
                 var customer = new Customer(name);
-                try
-                {
-                    await connection.ExecuteAsync(sql, customer);
 
-                }
-                catch (Exception ex)
-                {
-
-                }
+                await connection.ExecuteAsync(sql, customer);
 
                 await _eventBus.PublishAsync(new CustomerCreatedEvent(name));
 

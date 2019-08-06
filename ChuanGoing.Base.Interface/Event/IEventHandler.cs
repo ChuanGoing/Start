@@ -7,7 +7,7 @@ namespace ChuanGoing.Base.Interface.Event
     /// <summary>
     /// 事件处理器接口
     /// </summary>
-    public interface IEventHandler: IDependencyInstance
+    public interface IEventHandler : IDependencyInstance
     {
         /// <summary>
         /// 处理事件
