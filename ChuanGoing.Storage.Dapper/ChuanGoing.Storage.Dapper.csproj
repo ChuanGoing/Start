@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.60.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChuanGoing.Base.Interface\ChuanGoing.Base.Interface.csproj" />
+    <ProjectReference Include="..\ChuanGoing.Base.Ioc\ChuanGoing.Base.Ioc.csproj" />
+  </ItemGroup>
+
+</Project>

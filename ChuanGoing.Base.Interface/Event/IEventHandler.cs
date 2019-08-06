@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using ChuanGoing.Base.Interface.Ioc;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ChuanGoing.Base.Interface.Event
@@ -6,7 +7,7 @@ namespace ChuanGoing.Base.Interface.Event
     /// <summary>
     /// 事件处理器接口
     /// </summary>
-    public interface IEventHandler
+    public interface IEventHandler: IDependencyInstance
     {
         /// <summary>
         /// 处理事件
