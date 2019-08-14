@@ -1,0 +1,13 @@
+version: '3'
+services:
+  service:
+    image: ChuanGoing/WebApiService
+    build:
+      context: .
+      dockerfile: ChuanGoing.Web.API/Dockerfile
+    ports:
+      - 9020:9020
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://*:9020
+    container_name: WebApiService
