@@ -1,7 +1,7 @@
 version: '3'
 services:
   service:
-    image: chuangoing/webapiservice
+    image: chuangoingdocker/chuangoing-start-1/webapiservice
     build:
       context: .
       dockerfile: ChuanGoing.Web.API/Dockerfile
