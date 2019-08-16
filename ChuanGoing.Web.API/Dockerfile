@@ -1,8 +1,8 @@
-FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
+FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
 WORKDIR /app
 EXPOSE 9020
 
-FROM microsoft/dotnet:2.1-sdk AS publish
+FROM microsoft/dotnet:2.2-sdk AS publish
 WORKDIR /src
 COPY . .
 RUN dotnet restore
