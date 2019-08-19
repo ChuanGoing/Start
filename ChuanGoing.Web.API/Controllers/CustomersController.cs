@@ -40,7 +40,7 @@ namespace ChuanGoing.Web.API.Controllers
             //}
 
             //Docker test
-            Customer customer = new Customer(Guid.NewGuid(),"Jack");
+            Customer customer = new Customer(Guid.NewGuid(),"Jack Test");
             return Ok(customer);
         }
 
