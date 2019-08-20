@@ -43,7 +43,7 @@ spec:
           value: Production
         - name: ASPNETCORE_URLS
           value: http://*:9020
-        image: chuangoingdocker/chuangoing-start-1
+        image: chuangoingdocker/chuangoing-start-1:latest
         name: webapiservice
         ports:
         - containerPort: 9020
