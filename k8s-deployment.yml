@@ -1,3 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o k8s-deployment.yml
+    kompose.version: 1.18.0 (06a2e56)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: service
+  name: service
+spec:
+  ports:
+  - name: "9020"
+    port: 9020
+    targetPort: 9020
+  selector:
+    io.kompose.service: service
+status:
+  loadBalancer: {}
+
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
