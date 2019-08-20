@@ -2,7 +2,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   annotations:
-    kompose.cmd: kompose convert -o sercice-deployment.yml
+    kompose.cmd: kompose convert -o k8s-deployment.yml
     kompose.version: 1.18.0 (06a2e56)
   creationTimestamp: null
   labels:
