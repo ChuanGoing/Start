@@ -40,7 +40,7 @@ namespace ChuanGoing.Web.API.Controllers
             //}
 
             //Docker test
-            Customer customer = new Customer(Guid.NewGuid(),"Jack");
+            Customer customer = new Customer(Guid.NewGuid(),"Jack Test");
             return Ok(customer);
         }
 
@@ -65,6 +65,7 @@ namespace ChuanGoing.Web.API.Controllers
 
             //    return Created(Url.Action("Get", new { id = customer.Id }), customer.Id);
             //}
+
             //Docker test
             var customer = new Customer(name);
             return Created(Url.Action("Get", new { id = customer.Id }), customer.Id);
