@@ -13,54 +13,54 @@ namespace ChuanGoing.Web.API.Controllers
     [Route("api/[controller]")]
     public class CustomersController : Controller
     {
-        private readonly IRepository _repository;
+        //private readonly IRepository _repository;
         private readonly IEventBus _eventBus;
 
-        public CustomersController(IEventBus eventBus, IRepository repository)
+        public CustomersController(IEventBus eventBus)
         {
-            _repository = repository;
+            //_repository = repository;
             _eventBus = eventBus;
         }
 
 
-        // 获取指定ID的客户信息
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get(Guid id)
-        {
-            const string sql = "SELECT `CustomerId` AS Id, `CustomerName` AS Name FROM `Customer` WHERE `CustomerId`=@CustomerId";
+        //// 获取指定ID的客户信息
+        //[HttpGet("{id}")]
+        //public async Task<IActionResult> Get(Guid id)
+        //{
+        //    const string sql = "SELECT `CustomerId` AS Id, `CustomerName` AS Name FROM `Customer` WHERE `CustomerId`=@CustomerId";
 
-            using (var connection = _repository.DbConnection)
-            {
-                var customer = await connection.QueryFirstOrDefaultAsync<Customer>(sql, new { CustomerId = id });
-                if (customer == null)
-                {
-                    return NotFound();
-                }
-                return Ok(customer);
-            }
-        }
+        //    using (var connection = _repository.DbConnection)
+        //    {
+        //        var customer = await connection.QueryFirstOrDefaultAsync<Customer>(sql, new { CustomerId = id });
+        //        if (customer == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        return Ok(customer);
+        //    }
+        //}
 
-        // 创建新的客户信息
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CustomerDto model)
-        {
-            var name = model.Name;
-            if (string.IsNullOrEmpty(name))
-            {
-                return BadRequest();
-            }
+        //// 创建新的客户信息
+        //[HttpPost]
+        //public async Task<IActionResult> Create([FromBody] CustomerDto model)
+        //{
+        //    var name = model.Name;
+        //    if (string.IsNullOrEmpty(name))
+        //    {
+        //        return BadRequest();
+        //    }
 
-            const string sql = "INSERT INTO `Customer` (`CustomerId`, `CustomerName`) VALUES (@Id, @Name)";
-            using (var connection = _repository.DbConnection)
-            {
-                var customer = new Customer(name);
+        //    const string sql = "INSERT INTO `Customer` (`CustomerId`, `CustomerName`) VALUES (@Id, @Name)";
+        //    using (var connection = _repository.DbConnection)
+        //    {
+        //        var customer = new Customer(name);
 
-                await connection.ExecuteAsync(sql, customer);
+        //        await connection.ExecuteAsync(sql, customer);
 
-                await _eventBus.PublishAsync(new CustomerCreatedEvent(name));
+        //        await _eventBus.PublishAsync(new CustomerCreatedEvent(name));
 
-                return Created(Url.Action("Get", new { id = customer.Id }), customer.Id);
-            }
-        }
+        //        return Created(Url.Action("Get", new { id = customer.Id }), customer.Id);
+        //    }
+        //}
     }
 }

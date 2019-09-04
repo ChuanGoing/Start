@@ -1,12 +1,13 @@
 ﻿using Autofac;
 using ChuanGoing.Base.Interface.Db;
-using Dapper;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ChuanGoing.Storage.Dapper
 {
-    public class DapperRepository : IRepository
+    public class DapperRepository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
+        where TEntity : class, IEntity<TPrimaryKey>
     {
         public IDapperDbContext DbContext { get; private set; }
         public IDbConnection DbConnection { get; private set; }
@@ -32,11 +33,59 @@ namespace ChuanGoing.Storage.Dapper
             DbContext.RollBack();
         }
 
-        #region Dapper
 
-        protected virtual Task<TResult> QueryFirstOrDefaultAsync<TResult>(string sql, object param = null, int? commandTimeout = null, CommandType? commandType = null)
+
+
+        #region 
+
+        public TEntity Get(TPrimaryKey key)
         {
-            return DbConnection.QueryFirstOrDefaultAsync<TResult>(sql: sql, param: param, transaction: DbContext.Transaction, commandTimeout: commandTimeout, commandType: commandType);
+            throw new System.NotImplementedException();
+        }
+
+        public Task<TEntity> GetAsync(TPrimaryKey key)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IQueryable<TEntity> GetAll()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<IQueryable<TEntity>> GetAllAsync()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public TPrimaryKey Insert(TEntity entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<TPrimaryKey> InsertAsync(TEntity entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int Update(TEntity entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<int> UpdateAsync(TEntity entity)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public int Delete(TPrimaryKey key)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<int> DeleteAsync(TPrimaryKey key)
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion
