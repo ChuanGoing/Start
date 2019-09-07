@@ -1,5 +1,4 @@
-﻿using ChuanGoing.Base.Interface.Db;
-using ChuanGoing.Base.Interface.Event;
+﻿using ChuanGoing.Base.Interface.Event;
 using ChuanGoing.Base.Ioc;
 using ChuanGoing.Storage.Dapper;
 using Microsoft.AspNetCore.Builder;

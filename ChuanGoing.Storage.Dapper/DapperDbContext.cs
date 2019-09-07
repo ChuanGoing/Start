@@ -1,4 +1,6 @@
-﻿using ChuanGoing.Base.Interface.Db;
+﻿using ChuanGoing.Base.Data;
+using ChuanGoing.Base.Interface.Db;
+using ChuanGoing.Storage.Dapper.Commands;
 using System;
 using System.Data;
 
@@ -10,14 +12,20 @@ namespace ChuanGoing.Storage.Dapper
         private readonly IDbBuilder _dbBuilder;
 
         public IDbTransaction Transaction { get; private set; }
+
+        public ICommandBuilder CommandBuilder { get; private set; }
         /// <summary>
         /// 连接字符串(通过属性注入)
         /// </summary>
         public string ConnectionString { get; set; }
 
-        public DapperDbContext(IDbBuilder dbBuilder)
+        public ObjectContextCollection ObjectCollection { get; private set; }
+
+        public DapperDbContext(IDbBuilder dbBuilder, ICommandBuilder commandBuilder)
         {
             _dbBuilder = dbBuilder;
+            CommandBuilder = commandBuilder;
+            ObjectCollection = new ObjectContextCollection();
         }
 
         /// <summary>

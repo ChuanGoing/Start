@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ChuanGoing.Base.Interface\ChuanGoing.Base.Interface.csproj" />
     <ProjectReference Include="..\ChuanGoing.Base.Ioc\ChuanGoing.Base.Ioc.csproj" />
+    <ProjectReference Include="..\ChuanGoing.Base\ChuanGoing.Base.csproj" />
   </ItemGroup>
 
 </Project>

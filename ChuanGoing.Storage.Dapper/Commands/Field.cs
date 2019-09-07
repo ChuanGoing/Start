@@ -7,7 +7,7 @@ namespace ChuanGoing.Storage.Dapper.Commands
         public string Name { get; set; }
         public object Value { get; set; }
 
-        public Field(string name, object value)
+        public Field(string name, object value=null)
         {
             if (string.IsNullOrWhiteSpace(name))
             {
