@@ -18,9 +18,9 @@ namespace ChuanGoing.Base.Interface.Db
 
         #region Command
 
-        TPrimaryKey Insert(TEntity entity);
+        int Insert(TEntity entity);
 
-        Task<TPrimaryKey> InsertAsync(TEntity entity);
+        Task<int> InsertAsync(TEntity entity);
 
         int Update(TEntity entity);
 

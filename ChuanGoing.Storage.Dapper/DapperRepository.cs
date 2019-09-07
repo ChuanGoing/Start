@@ -79,16 +79,16 @@ namespace ChuanGoing.Storage.Dapper
             return Query<TEntity>(command.SqlString, command.Parameters).AsQueryable();
         }
 
-        public TPrimaryKey Insert(TEntity entity)
+        public int Insert(TEntity entity)
         {
             var com = InsertCommand(entity);
-            return QuerySingleOrDefault<TPrimaryKey>(com.SqlString, com.Parameters);
+            return Execute(com.SqlString, com.Parameters);
         }
 
-        public virtual async Task<TPrimaryKey> InsertAsync(TEntity entity)
+        public virtual async Task<int> InsertAsync(TEntity entity)
         {
             var com = InsertCommand(entity);
-            return await QuerySingleOrDefaultAsync<TPrimaryKey>(com.SqlString, com.Parameters);
+            return await ExecuteAsync(com.SqlString, com.Parameters);
         }
 
         public virtual int Update(TEntity entity)
@@ -162,7 +162,7 @@ namespace ChuanGoing.Storage.Dapper
                 bool isContinue = true;
                 foreach (var attr in prop.Attributes)
                 {
-                    if (attr is PrimaryKeyAttribute keyAttr && keyAttr.AutoIncrement)
+                    if (attr is PrimaryKeyAttribute keyAttr)
                     {
                         isContinue = false;
                     }
@@ -171,7 +171,8 @@ namespace ChuanGoing.Storage.Dapper
 
                 fields.Add(new Field(prop.Info.Name, prop.Info.GetValue(entity)));
             }
-            return CommandBuilder.InsertCommand(obj.Table, fields);
+            var com = CommandBuilder.InsertCommand(obj.Table, fields);
+            return com;
         }
 
         public SqlCommand UpdateCommand(TEntity entity)

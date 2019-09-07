@@ -91,7 +91,7 @@ namespace ChuanGoing.Storage.MySql
                 prmNames.Add($"@{field.Name}");
                 param.Add(field.Name, field.Value);
             }
-            string strSql = $@"INSERT INTO `{table}`({string.Join(",", colNames)}) VALUES ({string.Join(",", prmNames)});SELECT @@IDENTITY";
+            string strSql = $@"INSERT INTO `{table}`({string.Join(",", colNames)}) VALUES ({string.Join(",", prmNames)});";
             return new SqlCommand(strSql, param);
         }
 
@@ -275,7 +275,7 @@ namespace ChuanGoing.Storage.MySql
                     }
                 }
             }
-            string strSql = $"DELETE FROM `{table}` WHERE {string.Join(" AND ", filterStrs)}";
+            string strSql = $"DELETE FROM `{table}` WHERE {string.Join(" AND ", filterStrs)};";
             return new SqlCommand(strSql, param);
         }
     }
