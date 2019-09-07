@@ -1,7 +1,9 @@
 ﻿using Autofac;
 using ChuanGoing.Base.Data;
+using ChuanGoing.Base.Features;
 using ChuanGoing.Base.Interface.Db;
 using ChuanGoing.Storage.Dapper.Commands;
+using ChuanGoing.Storage.Dapper.Filters;
 using Dapper;
 using System.Collections.Generic;
 using System.Data;
@@ -53,14 +55,16 @@ namespace ChuanGoing.Storage.Dapper
 
         #region 
 
-        public TEntity Get(TPrimaryKey key)
+        public virtual TEntity Get(TPrimaryKey key)
         {
-            throw new System.NotImplementedException();
+            var com = GetCommand(key);
+            return QuerySingleOrDefault(com.SqlString, com.Parameters);
         }
 
-        public Task<TEntity> GetAsync(TPrimaryKey key)
+        public virtual async Task<TEntity> GetAsync(TPrimaryKey key)
         {
-            throw new System.NotImplementedException();
+            var com = GetCommand(key);
+            return await QuerySingleOrDefaultAsync(com.SqlString, com.Parameters);
         }
 
         public virtual IQueryable<TEntity> GetAll()
@@ -75,41 +79,141 @@ namespace ChuanGoing.Storage.Dapper
             return Query<TEntity>(command.SqlString, command.Parameters).AsQueryable();
         }
 
-        public Task<IQueryable<TEntity>> GetAllAsync()
-        {
-            throw new System.NotImplementedException();
-        }
-
         public TPrimaryKey Insert(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            var com = InsertCommand(entity);
+            return QuerySingleOrDefault<TPrimaryKey>(com.SqlString, com.Parameters);
         }
 
-        public Task<TPrimaryKey> InsertAsync(TEntity entity)
+        public virtual async Task<TPrimaryKey> InsertAsync(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            var com = InsertCommand(entity);
+            return await QuerySingleOrDefaultAsync<TPrimaryKey>(com.SqlString, com.Parameters);
         }
 
-        public int Update(TEntity entity)
+        public virtual int Update(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            var com = UpdateCommand(entity);
+            return Execute(com.SqlString, com.Parameters);
         }
 
-        public Task<int> UpdateAsync(TEntity entity)
+        public virtual async Task<int> UpdateAsync(TEntity entity)
         {
-            throw new System.NotImplementedException();
+            var com = UpdateCommand(entity);
+            return await ExecuteAsync(com.SqlString, com.Parameters);
         }
 
-        public int Delete(TPrimaryKey key)
+        public virtual int Delete(TPrimaryKey key)
         {
-            throw new System.NotImplementedException();
+            var com = DeleteCommand(new List<TPrimaryKey> { key });
+            return Execute(com.SqlString, com.Parameters);
         }
 
-        public Task<int> DeleteAsync(TPrimaryKey key)
+        public virtual async Task<int> DeleteAsync(TPrimaryKey key)
         {
-            throw new System.NotImplementedException();
+            var com = DeleteCommand(new List<TPrimaryKey> { key });
+            return await ExecuteAsync(com.SqlString, com.Parameters);
         }
 
+        public virtual int Delete(IEnumerable<TPrimaryKey> keys)
+        {
+            var com = DeleteCommand(keys);
+            return Execute(com.SqlString, com.Parameters);
+        }
+
+        public virtual async Task<int> DeleteAsync(IEnumerable<TPrimaryKey> keys)
+        {
+            var com = DeleteCommand(keys);
+            return await ExecuteAsync(com.SqlString, com.Parameters);
+        }
+
+        #endregion
+
+        #region Command
+
+        public SqlCommand GetCommand(TPrimaryKey key)
+        {
+            var obj = GetObjectContext<TEntity>();
+            FieldsCollection fields = new FieldsCollection();
+            List<Filter> filters = new List<Filter>();
+            foreach (var prop in obj.Properties)
+            {
+                foreach (var attr in prop.Attributes)
+                {
+                    if (attr is PrimaryKeyAttribute keyAttr)
+                    {
+                        filters.Add(new Equal(prop.Info.Name, key));
+                    }
+                }
+
+                fields.Add(new Field(prop.Info.Name));
+            }
+
+            QueryParameter queryParameter = new QueryParameter(fields, filters);
+            return CommandBuilder.QueryCommand(obj.Table, queryParameter, count: 1);
+        }
+
+        public SqlCommand InsertCommand(TEntity entity)
+        {
+            var obj = GetObjectContext<TEntity>();
+            FieldsCollection fields = new FieldsCollection();
+            foreach (var prop in obj.Properties)
+            {
+                bool isContinue = true;
+                foreach (var attr in prop.Attributes)
+                {
+                    if (attr is PrimaryKeyAttribute keyAttr && keyAttr.AutoIncrement)
+                    {
+                        isContinue = false;
+                    }
+                }
+                if (!isContinue) continue;
+
+                fields.Add(new Field(prop.Info.Name, prop.Info.GetValue(entity)));
+            }
+            return CommandBuilder.InsertCommand(obj.Table, fields);
+        }
+
+        public SqlCommand UpdateCommand(TEntity entity)
+        {
+            var obj = GetObjectContext<TEntity>();
+            FieldsCollection fields = new FieldsCollection();
+            List<Filter> filters = new List<Filter>();
+            foreach (var prop in obj.Properties)
+            {
+                var value = prop.Info.GetValue(entity);
+                bool isContinue = true;
+                foreach (var attr in prop.Attributes)
+                {
+                    if (attr is PrimaryKeyAttribute keyAttr)
+                    {
+                        filters.Add(new Equal(prop.Info.Name, value));
+                        isContinue = false;
+                    }
+                }
+                if (!isContinue) continue;
+                fields.Add(new Field(prop.Info.Name));
+            }
+            return CommandBuilder.UpdateCommand(obj.Table, fields, filters);
+        }
+
+        public SqlCommand DeleteCommand(IEnumerable<TPrimaryKey> keys)
+        {
+            var obj = GetObjectContext<TEntity>();
+            List<Filter> filters = new List<Filter>();
+            foreach (var prop in obj.Properties)
+            {
+                foreach (var attr in prop.Attributes)
+                {
+                    if (attr is PrimaryKeyAttribute keyAttr)
+                    {
+                        filters.Add(new Equal(prop.Info.Name, keys));
+                        break;
+                    }
+                }
+            }
+            return CommandBuilder.DeleteCommand(obj.Table, filters);
+        }
         #endregion
 
 

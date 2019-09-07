@@ -14,8 +14,6 @@ namespace ChuanGoing.Base.Interface.Db
 
         IQueryable<TEntity> GetAll();
 
-        Task<IQueryable<TEntity>> GetAllAsync();
-
         #endregion
 
         #region Command
