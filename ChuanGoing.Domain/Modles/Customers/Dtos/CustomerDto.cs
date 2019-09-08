@@ -1,4 +1,4 @@
-﻿namespace ChuanGoing.Web.API.Model
+﻿namespace ChuanGoing.Domain.Modles.Customers.Dtos
 {
     public class CustomerDto
     {

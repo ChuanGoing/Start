@@ -12,8 +12,9 @@ using System.Threading.Tasks;
 
 namespace ChuanGoing.Storage.Dapper
 {
-    public class DapperRepository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
+    public class DapperRepository<TDapperDbContext, TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>
+        where TDapperDbContext : IDapperDbContext
     {
         public IDapperDbContext DbContext { get; private set; }
         public IDbConnection DbConnection { get; private set; }
@@ -23,7 +24,7 @@ namespace ChuanGoing.Storage.Dapper
 
         public DapperRepository(IComponentContext container)
         {
-            DbContext = container.ResolveNamed<IDapperDbContext>(typeof(DapperDbContext).FullName);
+            DbContext = container.ResolveNamed<IDapperDbContext>(typeof(TDapperDbContext).FullName);
             CommandBuilder = DbContext.CommandBuilder;
             DbConnection = DbContext.GetConnection();
         }

@@ -10,8 +10,8 @@ namespace ChuanGoing.Storage.Dapper
         {
             builder.RegisterAssembly(ThisAssembly);
             builder.RegisterType<DapperDbContext>().As(typeof(IDbContext)).InstancePerLifetimeScope();
-            //builder.RegisterType<DapperRepository<,>>().As(typeof(IRepository<,>)).InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(DapperRepository<,>)).As(typeof(IRepository<,>)).InstancePerLifetimeScope();
+            //builder.RegisterType<DapperRepository<,,>>().As(typeof(IRepository<,>)).InstancePerLifetimeScope();
+            builder.RegisterGeneric(typeof(DapperRepository<,,>)).AsSelf().As(typeof(IRepository<,>)).InstancePerLifetimeScope();
         }
     }
 }

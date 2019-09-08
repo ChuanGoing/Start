@@ -8,8 +8,4 @@
     <Folder Include="Ioc\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ChuanGoing.Base\ChuanGoing.Base.csproj" />
-  </ItemGroup>
-
 </Project>

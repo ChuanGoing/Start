@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\ChuanGoing.Base.Interface\ChuanGoing.Base.Interface.csproj" />
     <ProjectReference Include="..\ChuanGoing.Base.Ioc\ChuanGoing.Base.Ioc.csproj" />
+    <ProjectReference Include="..\ChuanGoing.Domain\ChuanGoing.Domain.csproj" />
     <ProjectReference Include="..\ChuanGoing.SimpleEventBus\ChuanGoing.SimpleEventBus.csproj" />
     <ProjectReference Include="..\ChuanGoing.Storage.MySql\ChuanGoing.Storage.MySql.csproj" />
   </ItemGroup>

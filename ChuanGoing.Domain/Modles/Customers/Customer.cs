@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ChuanGoing.Base.Domain;
+using System;
 
-namespace EdaSample.Services.Customer.Model
+namespace ChuanGoing.Domain.Modles.Customers
 {
-    public class Customer
+    public class Customer : Entity<Guid>
     {
         public Customer()
             : this(Guid.NewGuid(), null)
@@ -19,8 +17,6 @@ namespace EdaSample.Services.Customer.Model
             this.Id = id;
             this.Name = name;
         }
-
-        public Guid Id { get; set; }
 
         public string Name { get; set; }
     }

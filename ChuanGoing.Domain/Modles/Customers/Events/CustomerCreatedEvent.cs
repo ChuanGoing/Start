@@ -1,7 +1,7 @@
 ﻿using ChuanGoing.Base.Interface.Event;
 using System;
 
-namespace ChuanGoing.Web.API.Events
+namespace ChuanGoing.Domain.Modles.Customers.Events
 {
     public class CustomerCreatedEvent : IEvent
     {

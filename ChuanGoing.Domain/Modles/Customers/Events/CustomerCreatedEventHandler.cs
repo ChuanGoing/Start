@@ -1,9 +1,8 @@
 ﻿using ChuanGoing.Base.Interface.Event;
-using ChuanGoing.Web.API.Events;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ChuanGoing.Web.API.EventHandlers
+namespace ChuanGoing.Domain.Modles.Customers.Events
 {
     public class CustomerCreatedEventHandler : IEventHandler<CustomerCreatedEvent>
     {

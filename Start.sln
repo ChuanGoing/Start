@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2003
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChuanGoing.Base.Interface", "ChuanGoing.Base.Interface\ChuanGoing.Base.Interface.csproj", "{CFB07F8C-142B-4C4E-9BCB-7E594083D3CF}"
 EndProject
@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChuanGoing.Storage.Dapper",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChuanGoing.Storage.MySql", "ChuanGoing.Storage.MySql\ChuanGoing.Storage.MySql.csproj", "{758E25DA-E4D2-42C7-9147-AA55A22E9F3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChuanGoing.Base", "ChuanGoing.Base\ChuanGoing.Base.csproj", "{0C4D3470-EBAF-4213-A31D-900F72D2F5B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChuanGoing.Base", "ChuanGoing.Base\ChuanGoing.Base.csproj", "{0C4D3470-EBAF-4213-A31D-900F72D2F5B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChuanGoing.Domain", "ChuanGoing.Domain\ChuanGoing.Domain.csproj", "{59635D06-73F5-48BE-8614-A82994BD0640}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{0C4D3470-EBAF-4213-A31D-900F72D2F5B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C4D3470-EBAF-4213-A31D-900F72D2F5B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C4D3470-EBAF-4213-A31D-900F72D2F5B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59635D06-73F5-48BE-8614-A82994BD0640}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59635D06-73F5-48BE-8614-A82994BD0640}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59635D06-73F5-48BE-8614-A82994BD0640}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59635D06-73F5-48BE-8614-A82994BD0640}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
