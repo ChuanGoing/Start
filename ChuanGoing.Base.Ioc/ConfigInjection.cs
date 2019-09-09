@@ -24,11 +24,13 @@ namespace ChuanGoing.Base.Ioc
         /// <typeparam name="TService"></typeparam>
         /// <param name="connStr"></param>
         /// <returns></returns>
-        public ConfigInjection UseDbContext<TDbContext, TService>(string connStr)
+        public ConfigInjection UseDbContext<TDbContext, TService>(string name, string connStr)
         {
             Container.RegisterType<TDbContext>()
-                .WithProperty("ConnectionString", connStr)
+                .As<TService>()
+                .AsSelf()
                 .Named<TService>(typeof(TDbContext).FullName)
+                .WithParameter(name, connStr)
                 .InstancePerLifetimeScope();
             return this;
         }

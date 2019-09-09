@@ -17,14 +17,15 @@ namespace ChuanGoing.Storage.Dapper
         /// <summary>
         /// 连接字符串(通过属性注入)
         /// </summary>
-        public string ConnectionString { get; set; }
+        public string ConnectionString { get; private set; }
 
         public ObjectContextCollection ObjectCollection { get; private set; }
 
-        public DapperDbContext(IDbBuilder dbBuilder, ICommandBuilder commandBuilder)
+        public DapperDbContext(IDbBuilder dbBuilder, ICommandBuilder commandBuilder, string conStr)
         {
             _dbBuilder = dbBuilder;
             CommandBuilder = commandBuilder;
+            ConnectionString = conStr;
             ObjectCollection = new ObjectContextCollection();
         }
 

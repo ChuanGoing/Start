@@ -1,5 +1,7 @@
-﻿using ChuanGoing.Base.Interface.Event;
+﻿using ChuanGoing.Base.Interface.Db;
+using ChuanGoing.Base.Interface.Event;
 using ChuanGoing.Base.Ioc;
+using ChuanGoing.Domain.Modles.Customers;
 using ChuanGoing.Storage.Dapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,7 +29,7 @@ namespace ChuanGoing.Web.API
             //依赖注入
             return services.UseAutofac<WebModule>(options =>
             {
-                options.UseDbContext<DapperDbContext, IDapperDbContext>(Configuration.GetConnectionString("MySqlString"));
+                options.UseDbContext<DapperDbContext, IDapperDbContext>("conStr", Configuration.GetConnectionString("MySqlString"));
             });
         }
 

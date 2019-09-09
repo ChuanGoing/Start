@@ -2,6 +2,6 @@
 {
     public interface IDbContext
     {
-        string ConnectionString { get; set; }
+        string ConnectionString { get;}
     }
 }

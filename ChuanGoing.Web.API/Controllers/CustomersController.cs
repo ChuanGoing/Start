@@ -15,7 +15,7 @@ namespace ChuanGoing.Web.API.Controllers
         private readonly IRepository<Customer, Guid> _repository;
         private readonly IEventBus _eventBus;
 
-        public CustomersController(IEventBus eventBus, IRepository<Customer, Guid> repository )
+        public CustomersController(IEventBus eventBus, IRepository<Customer, Guid> repository)
         {
             _repository = repository;
             _eventBus = eventBus;
@@ -46,8 +46,7 @@ namespace ChuanGoing.Web.API.Controllers
             }
 
             var customer = new Customer(name);
-            var result= await _repository.InsertAsync(customer);
-
+            var result = await _repository.InsertAsync(customer);
             await _eventBus.PublishAsync(new CustomerCreatedEvent(name));
 
             return Created(Url.Action("Get", new { id = customer.Id }), customer.Id);

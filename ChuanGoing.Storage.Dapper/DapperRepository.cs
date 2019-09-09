@@ -12,9 +12,8 @@ using System.Threading.Tasks;
 
 namespace ChuanGoing.Storage.Dapper
 {
-    public class DapperRepository<TDapperDbContext, TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
+    public class DapperRepository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>
-        where TDapperDbContext : IDapperDbContext
     {
         public IDapperDbContext DbContext { get; private set; }
         public IDbConnection DbConnection { get; private set; }
@@ -22,9 +21,9 @@ namespace ChuanGoing.Storage.Dapper
 
         public ObjectContextCollection EntitesCollection { get; }
 
-        public DapperRepository(IComponentContext container)
+        public DapperRepository(IComponentContext container, IDapperDbContext dapperDbContext)
         {
-            DbContext = container.ResolveNamed<IDapperDbContext>(typeof(TDapperDbContext).FullName);
+            DbContext = dapperDbContext;
             CommandBuilder = DbContext.CommandBuilder;
             DbConnection = DbContext.GetConnection();
         }
@@ -160,16 +159,6 @@ namespace ChuanGoing.Storage.Dapper
             FieldsCollection fields = new FieldsCollection();
             foreach (var prop in obj.Properties)
             {
-                bool isContinue = true;
-                foreach (var attr in prop.Attributes)
-                {
-                    if (attr is PrimaryKeyAttribute keyAttr)
-                    {
-                        isContinue = false;
-                    }
-                }
-                if (!isContinue) continue;
-
                 fields.Add(new Field(prop.Info.Name, prop.Info.GetValue(entity)));
             }
             var com = CommandBuilder.InsertCommand(obj.Table, fields);
@@ -194,7 +183,7 @@ namespace ChuanGoing.Storage.Dapper
                     }
                 }
                 if (!isContinue) continue;
-                fields.Add(new Field(prop.Info.Name));
+                fields.Add(new Field(prop.Info.Name, value));
             }
             return CommandBuilder.UpdateCommand(obj.Table, fields, filters);
         }
