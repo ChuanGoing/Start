@@ -15,7 +15,7 @@ namespace ChuanGoing.Storage.Dapper
 
         public ICommandBuilder CommandBuilder { get; private set; }
         /// <summary>
-        /// 连接字符串(通过属性注入)
+        /// 连接字符串(通过参数注入)
         /// </summary>
         public string ConnectionString { get; private set; }
 
