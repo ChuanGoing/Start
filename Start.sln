@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29123.88
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChuanGoing.Base.Interface", "ChuanGoing.Base.Interface\ChuanGoing.Base.Interface.csproj", "{CFB07F8C-142B-4C4E-9BCB-7E594083D3CF}"
 EndProject
@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChuanGoing.Storage.MySql", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChuanGoing.Base", "ChuanGoing.Base\ChuanGoing.Base.csproj", "{0C4D3470-EBAF-4213-A31D-900F72D2F5B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChuanGoing.Domain", "ChuanGoing.Domain\ChuanGoing.Domain.csproj", "{59635D06-73F5-48BE-8614-A82994BD0640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChuanGoing.Domain", "ChuanGoing.Domain\ChuanGoing.Domain.csproj", "{59635D06-73F5-48BE-8614-A82994BD0640}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{F5EABCC4-ECBF-4CCE-90EF-56B7BDB6698B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -60,6 +62,14 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CFB07F8C-142B-4C4E-9BCB-7E594083D3CF} = {F5EABCC4-ECBF-4CCE-90EF-56B7BDB6698B}
+		{574B1040-4F39-4A42-99CC-773DBE0BC34A} = {F5EABCC4-ECBF-4CCE-90EF-56B7BDB6698B}
+		{EB4889CB-16E6-4C92-B57E-FBE52166BD03} = {F5EABCC4-ECBF-4CCE-90EF-56B7BDB6698B}
+		{5E2256DE-79D1-4B3C-A5B4-F0AE4FE7A24B} = {F5EABCC4-ECBF-4CCE-90EF-56B7BDB6698B}
+		{758E25DA-E4D2-42C7-9147-AA55A22E9F3F} = {F5EABCC4-ECBF-4CCE-90EF-56B7BDB6698B}
+		{0C4D3470-EBAF-4213-A31D-900F72D2F5B9} = {F5EABCC4-ECBF-4CCE-90EF-56B7BDB6698B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {88664691-31A7-4D11-98C3-FF42933A3D10}
