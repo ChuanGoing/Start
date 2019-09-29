@@ -1,8 +1,5 @@
-﻿using ChuanGoing.Base.Interface.Db;
-using ChuanGoing.Base.Interface.Event;
-using ChuanGoing.Domain.Modles.Customers;
+﻿using ChuanGoing.Application;
 using ChuanGoing.Domain.Modles.Customers.Dtos;
-using ChuanGoing.Domain.Modles.Customers.Events;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -12,13 +9,11 @@ namespace ChuanGoing.Web.API.Controllers
     [Route("api/[controller]")]
     public class CustomersController : Controller
     {
-        private readonly IRepository<Customer, Guid> _repository;
-        private readonly IEventBus _eventBus;
+        private readonly ICustomerSrv _service;
 
-        public CustomersController(IEventBus eventBus, IRepository<Customer, Guid> repository)
+        public CustomersController(ICustomerSrv service)
         {
-            _repository = repository;
-            _eventBus = eventBus;
+            _service = service;
         }
 
 
@@ -26,13 +21,14 @@ namespace ChuanGoing.Web.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(Guid id)
         {
-            var customer = await _repository.GetAsync(id);
-
-            if (customer == null)
-            {
-                return NotFound();
-            }
+            var customer = await Task.Run(() => _service.Get(id));
             return Ok(customer);
+        }
+
+        public async Task<IActionResult> GetAll()
+        {
+            var customers = await Task.Run(() => _service.GetAll());
+            return Ok(customers);
         }
 
         // 创建新的客户信息
@@ -45,11 +41,9 @@ namespace ChuanGoing.Web.API.Controllers
                 return BadRequest();
             }
 
-            var customer = new Customer(name);
-            var result = await _repository.InsertAsync(customer);
-            await _eventBus.PublishAsync(new CustomerCreatedEvent(name));
+            await Task.Run(() => _service.AddCustomer(name));
 
-            return Created(Url.Action("Get", new { id = customer.Id }), customer.Id);
+            return Ok();
         }
     }
 }

@@ -4,9 +4,14 @@ namespace ChuanGoing.Domain.Modles.Customers
 {
     public class Customer : DomainEntity<Guid>
     {
-        public Customer(string name)
+        public Customer() : base()
         {
-            this.Name = name;
+
+        }
+
+        public Customer(string name) : this()
+        {
+            Name = name;
         }
 
         public string Name { get; set; }

@@ -9,11 +9,11 @@ namespace ChuanGoing.Base.Utils
         {
             var type = typeof(TPrimaryKey);
             TPrimaryKey t;
-            switch (type.Name)
+            switch (type.FullName)
             {
                 //TODO:举例
                 case "System.Int32":
-                    t = (TPrimaryKey)Convert.ChangeType(BitConverter.ToInt32(Guid.NewGuid().ToByteArray(),0), typeof(TPrimaryKey));
+                    t = (TPrimaryKey)Convert.ChangeType(BitConverter.ToInt32(Guid.NewGuid().ToByteArray(), 0), typeof(TPrimaryKey));
                     break;
                 case "System.Guid":
                     t = (TPrimaryKey)Convert.ChangeType(Guid.NewGuid(), typeof(TPrimaryKey));
