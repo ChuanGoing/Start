@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace ChuanGoing.Domain
 {
-    public class DomainEntity<TPrimaryKey> : IDomainEntity<TPrimaryKey>
+    public abstract class DomainEntity<TPrimaryKey> : IDomainEntity<TPrimaryKey>
     {
         public TPrimaryKey Id { get; private set; }
 
