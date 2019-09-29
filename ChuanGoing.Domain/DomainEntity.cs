@@ -1,4 +1,5 @@
-﻿using ChuanGoing.Base.Interface.Domain;
+﻿using ChuanGoing.Base.Features;
+using ChuanGoing.Base.Interface.Domain;
 using ChuanGoing.Base.Utils;
 using System.Reflection;
 
@@ -6,7 +7,11 @@ namespace ChuanGoing.Domain
 {
     public abstract class DomainEntity<TPrimaryKey> : IDomainEntity<TPrimaryKey>
     {
-        public TPrimaryKey Id { get; private set; }
+        /// <summary>
+        /// 编号
+        /// </summary>
+        [PrimaryKey]
+        public virtual TPrimaryKey Id { get; private set; }
 
         protected DomainEntity()
         {
