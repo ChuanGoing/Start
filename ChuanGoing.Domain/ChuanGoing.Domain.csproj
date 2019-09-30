@@ -10,4 +10,8 @@
     <ProjectReference Include="..\ChuanGoing.Base\ChuanGoing.Base.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modles\Behavior\" />
+  </ItemGroup>
+
 </Project>

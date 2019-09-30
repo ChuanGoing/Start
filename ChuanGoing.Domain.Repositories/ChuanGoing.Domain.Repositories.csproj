@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ChuanGoing.Domain\ChuanGoing.Domain.csproj" />
+    <ProjectReference Include="..\ChuanGoing.Storage.Dapper\ChuanGoing.Storage.Dapper.csproj" />
+  </ItemGroup>
+
+</Project>
