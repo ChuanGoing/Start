@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ChuanGoing.Domain.Modles
 {
@@ -10,6 +11,6 @@ namespace ChuanGoing.Domain.Modles
         /// <summary>
         /// 用户编号
         /// </summary>
-        public Guid UserId { get; set; }
+        public Guid UserId { get;private set; }
     }
 }

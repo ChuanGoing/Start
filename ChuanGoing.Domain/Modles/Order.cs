@@ -34,11 +34,7 @@ namespace ChuanGoing.Domain.Modles
         /// <summary>
         /// 用户id
         /// </summary>
-        public Guid CustomerId { get; private set; }
-        /// <summary>
-        /// 用户名
-        /// </summary>
-        public string CustomerName { get; private set; }
+        public Guid UserId { get; private set; }
         /// <summary>
         /// 更新者id
         /// </summary>

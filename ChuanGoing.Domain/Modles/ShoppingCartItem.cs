@@ -23,6 +23,6 @@ namespace ChuanGoing.Domain.Modles
         /// <summary>
         /// 加入时间
         /// </summary>
-        public long CreateTime { get; private set; }
+        public long JoinTime { get; private set; }
     }
 }

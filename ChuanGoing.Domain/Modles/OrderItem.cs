@@ -13,13 +13,9 @@ namespace ChuanGoing.Domain.Modles
         /// </summary>
         public Guid OrderId { get; private set; }
         /// <summary>
-        /// 商品id
+        /// 商品
         /// </summary>
-        public Guid ProductId { get; private set; }
-        /// <summary>
-        /// 商品单价
-        /// </summary>
-        public decimal Price { get; private set; }
+        public Product Product { get; private set; }
         /// <summary>
         /// 数量
         /// </summary>
@@ -27,6 +23,6 @@ namespace ChuanGoing.Domain.Modles
         /// <summary>
         /// 加入时间
         /// </summary>
-        public long CreateTime { get; private set; }
+        public long JoinTime { get; private set; }
     }
 }
