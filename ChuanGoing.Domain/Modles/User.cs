@@ -23,21 +23,5 @@ namespace ChuanGoing.Domain.Modles
         /// 住址
         /// </summary>
         public string Address { get; private set; }
-        /// <summary>
-        /// 更新者id
-        /// </summary>
-        public Guid UpdaterId { get; private set; }
-        /// <summary>
-        /// 更新时间
-        /// </summary>
-        public long UpdateTime { get; private set; }
-        /// <summary>
-        /// 创建者id
-        /// </summary>
-        public Guid CreatorId { get; private set; }
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public long CreateTime { get; private set; }
     }
 }

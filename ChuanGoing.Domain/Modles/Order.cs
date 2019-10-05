@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ChuanGoing.Domain.Modles
 {
@@ -32,24 +33,12 @@ namespace ChuanGoing.Domain.Modles
         /// </summary>
         public string Remark { get; private set; }
         /// <summary>
-        /// 用户id
+        /// 用户
         /// </summary>
-        public Guid UserId { get; private set; }
+        public User User { get; private set; }
         /// <summary>
-        /// 更新者id
+        /// 订单明细
         /// </summary>
-        public Guid UpdaterId { get; private set; }
-        /// <summary>
-        /// 更新时间
-        /// </summary>
-        public long UpdateTime { get; private set; }
-        /// <summary>
-        /// 创建者id
-        /// </summary>
-        public Guid CreatorId { get; private set; }
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public long CreateTime { get; private set; }
+        public List<OrderItem> OrderItems { get; private set; }
     }
 }

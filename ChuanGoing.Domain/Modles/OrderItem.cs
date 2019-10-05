@@ -9,9 +9,9 @@ namespace ChuanGoing.Domain.Modles
     public class OrderItem : Entity<Guid>
     {
         /// <summary>
-        /// 订单id
+        /// 订单
         /// </summary>
-        public Guid OrderId { get; private set; }
+        public Order Order { get; private set; }
         /// <summary>
         /// 商品
         /// </summary>

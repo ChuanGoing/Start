@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ChuanGoing.Domain.Modles
 {
@@ -9,8 +8,8 @@ namespace ChuanGoing.Domain.Modles
     public class ShoppingCart : DomainEntity<Guid>
     {
         /// <summary>
-        /// 用户编号
+        /// 用户
         /// </summary>
-        public Guid UserId { get;private set; }
+        public User User { get;private set; }
     }
 }
