@@ -6,16 +6,20 @@ namespace ChuanGoing.Domain.Modles
     /// <summary>
     /// 订单明细
     /// </summary>
-    public class OrderItem : Entity<Guid>
+    public partial class OrderItem : Entity<Guid>
     {
         /// <summary>
-        /// 订单
+        /// 订单编号
         /// </summary>
-        public Order Order { get; private set; }
+        public Guid OrderId { get; private set; }
         /// <summary>
-        /// 商品
+        /// 商品编号
         /// </summary>
-        public Product Product { get; private set; }
+        public Guid ProductId { get; private set; }
+        /// <summary>
+        /// 商品单价
+        /// </summary>
+        public decimal Price { get; private set; }
         /// <summary>
         /// 数量
         /// </summary>

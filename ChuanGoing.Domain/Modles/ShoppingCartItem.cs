@@ -9,13 +9,13 @@ namespace ChuanGoing.Domain.Modles
     public class ShoppingCartItem : Entity<Guid>
     {
         /// <summary>
-        /// 购物车
+        /// 购物车编号
         /// </summary>
-        public ShoppingCart ShoppingCart { get; private set; }
+        public Guid ShoppingCartId { get; private set; }
         /// <summary>
-        /// 商品
+        /// 商品编号
         /// </summary>
-        public Product Product { get; private set; }
+        public Guid ProductId { get; private set; }
         /// <summary>
         /// 数量
         /// </summary>

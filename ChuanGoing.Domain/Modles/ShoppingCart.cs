@@ -8,8 +8,8 @@ namespace ChuanGoing.Domain.Modles
     public class ShoppingCart : DomainEntity<Guid>
     {
         /// <summary>
-        /// 用户
+        /// 用户编号
         /// </summary>
-        public User User { get;private set; }
+        public Guid UserId { get;private set; }
     }
 }

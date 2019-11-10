@@ -12,8 +12,4 @@
     <ProjectReference Include="..\ChuanGoing.Storage.Dapper\ChuanGoing.Storage.Dapper.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Modles\Behavior\" />
-  </ItemGroup>
-
 </Project>

@@ -6,7 +6,7 @@ namespace ChuanGoing.Domain.Modles
     /// <summary>
     /// 订单
     /// </summary>
-    public class Order : DomainEntity<Guid>
+    public partial class Order : DomainEntity<Guid>
     {
         /// <summary>
         /// 订单流水号
@@ -19,7 +19,7 @@ namespace ChuanGoing.Domain.Modles
         /// <summary>
         /// 状态
         /// </summary>
-        public int Status { get; private set; }
+        public OrderStatus Status { get; private set; }
         /// <summary>
         /// 支付时间
         /// </summary>
@@ -35,7 +35,10 @@ namespace ChuanGoing.Domain.Modles
         /// <summary>
         /// 用户
         /// </summary>
-        public User User { get; private set; }
+        public Guid UserId { get; private set; }
+
+        public string Adress { get; private set; }
+
         /// <summary>
         /// 订单明细
         /// </summary>
