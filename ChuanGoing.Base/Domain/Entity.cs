@@ -1,16 +1,22 @@
 ﻿using ChuanGoing.Base.Features;
 using ChuanGoing.Base.Interface.Db;
+using ChuanGoing.Base.Utils;
 using System.Reflection;
 
 namespace ChuanGoing.Base.Domain
 {
     public abstract class Entity<TPrimaryKey> : IEntity<TPrimaryKey>
     {
+        protected Entity()
+        {
+            Id = GenerateIdHelper.NewId<TPrimaryKey>();
+        }
+
         /// <summary>
         /// 编号
         /// </summary>
         [PrimaryKey]
-        public virtual TPrimaryKey Id { get; set; }
+        public TPrimaryKey Id { get; set; }
 
         public override bool Equals(object obj)
         {

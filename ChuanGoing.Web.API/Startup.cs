@@ -1,7 +1,7 @@
-﻿using ChuanGoing.Base.Interface.Db;
+﻿using AutoMapper;
+using ChuanGoing.Application;
 using ChuanGoing.Base.Interface.Event;
 using ChuanGoing.Base.Ioc;
-using ChuanGoing.Domain.Modles.Customers;
 using ChuanGoing.Storage.Dapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Reflection;
 
 namespace ChuanGoing.Web.API
 {
@@ -25,7 +26,8 @@ namespace ChuanGoing.Web.API
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            //注册AutoMapper
+            services.AddAutoMapper(Assembly.GetAssembly(typeof(ApplicationModule)));
             //依赖注入
             return services.UseAutofac<WebModule>(options =>
             {

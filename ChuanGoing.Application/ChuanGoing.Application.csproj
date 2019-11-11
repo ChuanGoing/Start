@@ -10,7 +10,7 @@
     <ProjectReference Include="..\ChuanGoing.Base\ChuanGoing.Base.csproj" />
     <ProjectReference Include="..\ChuanGoing.Domain\ChuanGoing.Domain.csproj" />
     <ProjectReference Include="..\ChuanGoing.SimpleEventBus\ChuanGoing.SimpleEventBus.csproj" />
-    <ProjectReference Include="..\ChuanGoing.Storage.MySql\ChuanGoing.Storage.MySql.csproj" />
+    <ProjectReference Include="..\ChuanGoing.Storage.Repository\ChuanGoing.Storage.Repository.csproj" />
   </ItemGroup>
 
 </Project>

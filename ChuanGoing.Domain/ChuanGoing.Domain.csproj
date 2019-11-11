@@ -8,7 +8,6 @@
     <ProjectReference Include="..\ChuanGoing.Base.Interface\ChuanGoing.Base.Interface.csproj" />
     <ProjectReference Include="..\ChuanGoing.Base.Ioc\ChuanGoing.Base.Ioc.csproj" />
     <ProjectReference Include="..\ChuanGoing.Base\ChuanGoing.Base.csproj" />
-    <ProjectReference Include="..\ChuanGoing.Domain.Repositories\ChuanGoing.Domain.Repositories.csproj" />
     <ProjectReference Include="..\ChuanGoing.Storage.Dapper\ChuanGoing.Storage.Dapper.csproj" />
   </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChuanGoing.Base.Features;
+using System;
 using System.Collections.Generic;
 
 namespace ChuanGoing.Domain.Modles
@@ -31,7 +32,7 @@ namespace ChuanGoing.Domain.Modles
         /// <summary>
         /// 备注
         /// </summary>
-        public string Remark { get; private set; }
+        public string Description { get; private set; }
         /// <summary>
         /// 用户
         /// </summary>
@@ -42,6 +43,7 @@ namespace ChuanGoing.Domain.Modles
         /// <summary>
         /// 订单明细
         /// </summary>
+        [Ignore]
         public List<OrderItem> OrderItems { get; private set; }
     }
 }

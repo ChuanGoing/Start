@@ -6,7 +6,7 @@ namespace ChuanGoing.Domain.Modles
 {
     public partial class Order
     {
-        public void Add(Guid userId, Adress adress, string remark, List<OrderItem> orderItems)
+        public void Add(Guid userId, Adress adress, string description, List<OrderItem> orderItems)
         {
             Sn = Guid.NewGuid().ToString("N");
             TotalPrice = orderItems.Sum(i => i.Price * i.Count);
@@ -14,15 +14,23 @@ namespace ChuanGoing.Domain.Modles
             ExpireTime = DateTimeOffset.Now.AddMinutes(-30).ToUnixTimeMilliseconds();
             UserId = userId;
             Adress = adress.ToString();
-            Remark = remark;
-            orderItems.ForEach(i=>i.SetOrder(this));
-            OrderItems = orderItems;
+            Description = description;
+            orderItems.ForEach(i =>
+            {
+                i.SetOrder(this);
+            });
+            SetItems(orderItems);
         }
 
         public void Pay()
         {
             Status = OrderStatus.Paid;
             PaymentTime = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+        }
+
+        public void SetItems(List<OrderItem> orderItems)
+        {
+            OrderItems = orderItems;
         }
     }
 }

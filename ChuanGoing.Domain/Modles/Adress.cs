@@ -2,8 +2,8 @@
 {
     public class Adress
     {
-        public string Province { get; }
-        public string City { get; }
+        public string Province { get; set; }
+        public string City { get; set; }
 
         public override string ToString()
         {

@@ -2,7 +2,7 @@
 using ChuanGoing.Base.Ioc;
 using ChuanGoing.Domain;
 using ChuanGoing.SimpleEventBus;
-using ChuanGoing.Storage.MySql;
+using ChuanGoing.Storage.Repository;
 
 namespace ChuanGoing.Application
 {
@@ -12,8 +12,8 @@ namespace ChuanGoing.Application
         {
             builder.RegisterAssembly(ThisAssembly);
             builder.RegisterModule<DomainModule>();
-            builder.RegisterModule<EventBusModule>();
-            builder.RegisterModule<MysqlModule>();
+            builder.RegisterModule<RepositoryModule>();
+            builder.RegisterModule<EventBusModule>();            
         }
     }
 }
