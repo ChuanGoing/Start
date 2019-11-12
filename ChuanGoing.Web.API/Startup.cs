@@ -3,6 +3,7 @@ using ChuanGoing.Application;
 using ChuanGoing.Base.Interface.Event;
 using ChuanGoing.Base.Ioc;
 using ChuanGoing.Storage.Dapper;
+using ChuanGoing.Web.API.Filters;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -15,17 +16,37 @@ namespace ChuanGoing.Web.API
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
             Configuration = configuration;
+            Environment = env;
         }
 
         public IConfiguration Configuration { get; }
 
+        /// <summary>
+        /// 环境
+        /// </summary>
+        public IHostingEnvironment Environment { get; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            if (Environment.IsDevelopment())
+            {
+                services.AddMvc(mvcOptions =>
+                {
+                    mvcOptions.Filters.Add<ExceptionFilter>();
+                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+                services.AddOpenApiDocument(conf => conf.Title = "WebApi 接口文档");
+            }
+            else
+            {
+                services.AddMvc(mvcOptions =>
+                {
+                    mvcOptions.Filters.Add<ExceptionFilter>();
+                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            }
             //注册AutoMapper
             services.AddAutoMapper(Assembly.GetAssembly(typeof(ApplicationModule)));
             //依赖注入

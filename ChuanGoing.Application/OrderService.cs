@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ChuanGoing.Application.ViewModels;
+using ChuanGoing.Base.Exceptions;
 using ChuanGoing.Domain.Modles;
 using ChuanGoing.Domain.Repositories;
 using System;
@@ -22,7 +23,10 @@ namespace ChuanGoing.Application
 
         public void Add(OrderViewModel view)
         {
-            if (view == null) new Exception("参数无效");
+            if (view == null)
+            {
+                throw new InnerException(MessageCodes.InvalidParams, "参数无效");
+            }
             var order = new Order();
             Mapper.Map(view, order);
 
