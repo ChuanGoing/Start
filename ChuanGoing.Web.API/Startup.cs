@@ -32,6 +32,10 @@ namespace ChuanGoing.Web.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            ///*使用NLog*/
+            //loggerFactory.AddNLog();
+            //env.ConfigureNLog("NLog.config");
+
             if (Environment.IsDevelopment())
             {
                 services.AddMvc(mvcOptions =>
