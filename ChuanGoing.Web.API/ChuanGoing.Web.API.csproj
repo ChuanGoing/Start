@@ -18,4 +18,14 @@
     <ProjectReference Include="..\ChuanGoing.Base.Ioc\ChuanGoing.Base.Ioc.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Filters\" />
+  </ItemGroup>
+
 </Project>
