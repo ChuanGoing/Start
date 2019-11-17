@@ -5,7 +5,7 @@ using System;
 
 namespace ChuanGoing.Domain.Repositories
 {
-    public interface IOrderItemRepository : IRepository<OrderItem, Guid>, IScopeInstance
+    public interface IOrderItemRepository : ICommandRepository<OrderItem, Guid>, IScopeInstance
     {
     }
 }

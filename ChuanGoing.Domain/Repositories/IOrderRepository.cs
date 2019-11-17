@@ -5,7 +5,7 @@ using System;
 
 namespace ChuanGoing.Domain.Repositories
 {
-    public interface IOrderRepository : IRepository<Order, Guid>, IScopeInstance
+    public interface IOrderRepository : ICommandRepository<Order, Guid>, IScopeInstance
     {
         Order GetBySn(string sn);
     }

@@ -12,7 +12,9 @@ using System.Threading.Tasks;
 
 namespace ChuanGoing.Storage.Dapper
 {
-    public class DapperRepository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
+    public class DapperRepository<TEntity, TPrimaryKey> :
+        ICommandRepository<TEntity, TPrimaryKey>,
+        IQueryRepository<TEntity, TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>
     {
         public IDapperDbContext DbContext { get; private set; }

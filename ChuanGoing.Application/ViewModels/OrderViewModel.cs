@@ -12,10 +12,6 @@ namespace ChuanGoing.Application.ViewModels
     public class OrderViewModel
     {
         /// <summary>
-        /// 总价
-        /// </summary>
-        public decimal TotalPrice { get; set; }
-        /// <summary>
         /// 备注
         /// </summary>
         public string Description { get; set; }

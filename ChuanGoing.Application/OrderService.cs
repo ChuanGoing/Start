@@ -7,7 +7,7 @@ using System;
 
 namespace ChuanGoing.Application
 {
-    public class OrderService : ServiceBase, IOrderService
+    public class OrderService : ServiceBase<Order, Guid>, IOrderService
     {
         // 注入仓储接口
         private readonly IOrderRepository _repo;
@@ -15,7 +15,7 @@ namespace ChuanGoing.Application
 
         public OrderService(IComponentContext container,
             IOrderRepository repo, IOrderItemRepository itemRepo)
-            : base(container)
+            : base(container, repo)
         {
             _repo = repo;
             _itemRepo = itemRepo;
