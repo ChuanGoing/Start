@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace ChuanGoing.Web.API.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
+    //[Authorize]
     public class OrderController : Controller
     {
         private readonly ILogger<OrderController> _logger;
