@@ -10,9 +10,11 @@ namespace ChuanGoing.AuthorizationServer
     {
         public static IEnumerable<ApiResource> GetApiResources()
         {
+            var res = new ApiResource("WebApi", "ChuanGoingWebApi");
+            //res.ApiSecrets.Add(new Secret("ApiSecret"));
             return new List<ApiResource>
             {
-                new ApiResource("WebApi", "ChuanGoingWebApi")
+                res
             };
         }
 
@@ -27,21 +29,50 @@ namespace ChuanGoing.AuthorizationServer
 
         public static IEnumerable<Client> GetClients()
         {
-            return new List<Client>
-        {
-            new Client()
+            var List = new List<Client>
             {
-                ClientId="ClientId",
-                AllowedGrantTypes=GrantTypes.ClientCredentials,
-                ClientSecrets={ new Secret("ClientSecret".Sha256())},
-                AllowedScopes=
+                new Client()
+                {
+                    ClientId = "ClientCredentials",
+                    AllowedGrantTypes = GrantTypes.ClientCredentials,
+                    ClientSecrets = { new Secret("ClientSecret".Sha256()) },
+                    AllowedScopes =
                 {
                     IdentityServerConstants.StandardScopes.OpenId,
                     IdentityServerConstants.StandardScopes.Profile,
                     "WebApi"
                 }
-            }
-        };
+                },
+
+                new Client()
+                {
+                    ClientId = "ResourceOwnerPassword",
+                    AllowedGrantTypes = GrantTypes.ResourceOwnerPassword,
+                    ClientSecrets = { new Secret("ClientSecret".Sha256()) },
+                    AllowedScopes =
+                {
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "WebApi"
+                }
+                },
+                new Client()
+                {
+                    ClientId = "Implicit",
+                    ClientName = "ImplicitClient",
+                    AllowedGrantTypes = GrantTypes.Implicit,
+                    ClientSecrets = { new Secret("ClientSecret".Sha256()) },
+                    RedirectUris = { "http://localhost:5020/signin-oidc" },
+                    PostLogoutRedirectUris = { "http://localhost:5020" },
+                    AllowedScopes =
+                {
+                    IdentityServerConstants.StandardScopes.OpenId,
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "WebApi"
+                }
+                }
+            };
+            return List;
         }
 
         //测试用户

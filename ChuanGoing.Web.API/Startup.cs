@@ -53,15 +53,16 @@ namespace ChuanGoing.Web.API
                 }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             }
             //注册认证服务
-            //指定认证方案
+            var authConfig = Configuration.GetSection("Authorization");
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
             //添加Token验证服务到DI
             .AddIdentityServerAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme, options =>
             {
-                //指定授权地址
-                options.Authority = "http://localhost:6005";
-                options.RequireHttpsMetadata = false;
-                options.ApiName = "WebApi";
+                options.Authority = authConfig.GetValue<string>("Authority");
+                options.RequireHttpsMetadata = authConfig.GetValue<bool>("RequireHttpsMetadata");
+                options.ApiName = authConfig.GetValue<string>("ApiName");
+                //options.ApiSecret = authConfig.GetValue<string>("ApiSecret");
+                options.SaveToken = true;
             });
             //注册AutoMapper
             services.AddAutoMapper(Assembly.GetAssembly(typeof(ApplicationModule)));
