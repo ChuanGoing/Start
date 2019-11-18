@@ -32,7 +32,7 @@ namespace ChuanGoing.AuthorizationServer
             new Client()
             {
                 ClientId="ClientId",
-                AllowedGrantTypes=GrantTypes.Implicit,
+                AllowedGrantTypes=GrantTypes.ClientCredentials,
                 ClientSecrets={ new Secret("ClientSecret".Sha256())},
                 AllowedScopes=
                 {

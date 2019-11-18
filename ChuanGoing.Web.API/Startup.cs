@@ -4,6 +4,7 @@ using ChuanGoing.Base.Interface.Event;
 using ChuanGoing.Base.Ioc;
 using ChuanGoing.Storage.Dapper;
 using ChuanGoing.Web.API.Filters;
+using IdentityServer4.AccessTokenValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -51,6 +52,17 @@ namespace ChuanGoing.Web.API
                     mvcOptions.Filters.Add<ExceptionFilter>();
                 }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             }
+            //注册认证服务
+            //指定认证方案
+            services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
+            //添加Token验证服务到DI
+            .AddIdentityServerAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme, options =>
+            {
+                //指定授权地址
+                options.Authority = "http://localhost:6005";
+                options.RequireHttpsMetadata = false;
+                options.ApiName = "WebApi";
+            });
             //注册AutoMapper
             services.AddAutoMapper(Assembly.GetAssembly(typeof(ApplicationModule)));
             //依赖注入
@@ -75,6 +87,7 @@ namespace ChuanGoing.Web.API
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseAuthentication();
             app.UseHttpsRedirection();
             app.UseMvc();
         }

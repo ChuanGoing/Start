@@ -1,11 +1,13 @@
 ﻿using ChuanGoing.Application;
 using ChuanGoing.Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ChuanGoing.Web.API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly ILogger<OrderController> _logger;
@@ -26,9 +28,16 @@ namespace ChuanGoing.Web.API.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public OrderViewResult Get([FromQuery]string sn)
         {
             return _service.Get(sn);
+        }
+
+        [HttpGet("Test")]
+        public IActionResult Get()
+        {
+            return Content("hello world");
         }
     }
 }
