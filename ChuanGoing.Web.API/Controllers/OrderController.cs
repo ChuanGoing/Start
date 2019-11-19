@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 namespace ChuanGoing.Web.API.Controllers
 {
     [Route("api/[controller]")]
-    //[Authorize]
+    [Authorize]
     public class OrderController : Controller
     {
         private readonly ILogger<OrderController> _logger;
@@ -32,12 +32,6 @@ namespace ChuanGoing.Web.API.Controllers
         public OrderViewResult Get([FromQuery]string sn)
         {
             return _service.Get(sn);
-        }
-
-        [HttpGet("Test")]
-        public IActionResult Get()
-        {
-            return Content("hello world");
         }
     }
 }
