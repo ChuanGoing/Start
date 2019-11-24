@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ChuanGoing.Base.Exceptions;
+using Microsoft.AspNetCore.Http;
 using System.Net;
 
-namespace ChuanGoing.Base.Exceptions
+namespace ChuanGoing.Web.API
 {
     public class WebException: InnerException
     {

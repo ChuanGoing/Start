@@ -1,5 +1,6 @@
 ﻿using ChuanGoing.Application;
 using ChuanGoing.Application.ViewModels;
+using ChuanGoing.Web.API.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,15 +21,14 @@ namespace ChuanGoing.Web.API.Controllers
         }
 
         [HttpPost]
+        [Permission("ABC")]
         public void Add([FromBody]OrderViewModel order)
         {
-            _logger.LogInformation("Order Add Start...");
             _service.Add(order);
-            _logger.LogInformation("Order Add End...");
         }
 
         [HttpGet]
-        [AllowAnonymous]
+        [Permission("XYZ")]
         public OrderViewResult Get([FromQuery]string sn)
         {
             return _service.Get(sn);

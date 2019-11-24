@@ -40,6 +40,10 @@
         /// 鉴权成功
         /// </summary>
         public const int AuthSuccess = 20109000;
+        /// <summary>
+        /// 无权限访问
+        /// </summary>
+        public const int AccessDenied = 20110000;
 
         #endregion
 

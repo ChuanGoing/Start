@@ -39,19 +39,14 @@ namespace ChuanGoing.Web.API
 
             if (Environment.IsDevelopment())
             {
-                services.AddMvc(mvcOptions =>
-                {
-                    mvcOptions.Filters.Add<ExceptionFilter>();
-                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
                 services.AddOpenApiDocument(conf => conf.Title = "WebApi 接口文档");
             }
-            else
+            services.AddMvc(mvcOptions =>
             {
-                services.AddMvc(mvcOptions =>
-                {
-                    mvcOptions.Filters.Add<ExceptionFilter>();
-                }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            }
+                mvcOptions.Filters.Add<ExceptionFilter>();
+                mvcOptions.Filters.Add<PermissionFilter>();
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
             //注册认证服务
             var authConfig = Configuration.GetSection("Authorization");
             services.AddAuthentication(IdentityServerAuthenticationDefaults.AuthenticationScheme)
@@ -82,6 +77,7 @@ namespace ChuanGoing.Web.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseReDoc();
             }
             else
             {

@@ -23,7 +23,7 @@ namespace ChuanGoing.Web.API.Filters
             #region Ioc/automapper等中间件对错误信息进行了包装,需要解包
 
             //web错误:验证/鉴权等
-            var webException = GetException<Base.Exceptions.WebException>(context.Exception);
+            var webException = GetException<WebException>(context.Exception);
             if (webException != null)
             {
                 context.Result = new JsonResult(new
