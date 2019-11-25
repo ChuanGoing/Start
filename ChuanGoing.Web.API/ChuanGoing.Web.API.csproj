@@ -6,16 +6,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="2.7.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.0" />
+    <PackageReference Include="NSwag.AspNetCore" Version="13.1.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ChuanGoing.Application\ChuanGoing.Application.csproj" />
     <ProjectReference Include="..\ChuanGoing.Base.Interface\ChuanGoing.Base.Interface.csproj" />
     <ProjectReference Include="..\ChuanGoing.Base.Ioc\ChuanGoing.Base.Ioc.csproj" />
-    <ProjectReference Include="..\ChuanGoing.Domain\ChuanGoing.Domain.csproj" />
-    <ProjectReference Include="..\ChuanGoing.SimpleEventBus\ChuanGoing.SimpleEventBus.csproj" />
-    <ProjectReference Include="..\ChuanGoing.Storage.MySql\ChuanGoing.Storage.MySql.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

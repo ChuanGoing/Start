@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using ChuanGoing.Base;
 using ChuanGoing.Base.Ioc;
 
 namespace ChuanGoing.Domain
@@ -8,6 +9,7 @@ namespace ChuanGoing.Domain
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssembly(ThisAssembly);
+            builder.RegisterModule<BaseModule>();
         }
     }
 }

@@ -9,8 +9,8 @@ namespace ChuanGoing.Storage.Dapper
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterAssembly(ThisAssembly);
-            //
-            builder.RegisterGeneric(typeof(DapperRepository<,>)).AsSelf().As(typeof(IRepository<,>)).InstancePerLifetimeScope();
+            ////
+            //builder.RegisterGeneric(typeof(DapperRepository<,>)).AsSelf().As(typeof(IRepository<,>)).InstancePerLifetimeScope();
         }
     }
 }

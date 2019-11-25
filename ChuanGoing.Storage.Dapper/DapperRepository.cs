@@ -12,7 +12,9 @@ using System.Threading.Tasks;
 
 namespace ChuanGoing.Storage.Dapper
 {
-    public class DapperRepository<TEntity, TPrimaryKey> : IRepository<TEntity, TPrimaryKey>
+    public class DapperRepository<TEntity, TPrimaryKey> :
+        ICommandRepository<TEntity, TPrimaryKey>,
+        IQueryRepository<TEntity, TPrimaryKey>
         where TEntity : class, IEntity<TPrimaryKey>
     {
         public IDapperDbContext DbContext { get; private set; }
@@ -157,9 +159,18 @@ namespace ChuanGoing.Storage.Dapper
         {
             var obj = GetObjectContext<TEntity>();
             FieldsCollection fields = new FieldsCollection();
+            bool skip = false;
             foreach (var prop in obj.Properties)
             {
-                fields.Add(new Field(prop.Info.Name, prop.Info.GetValue(entity)));
+                skip = false;
+                foreach (var attr in prop.Attributes)
+                {
+                    if (attr is IgnoreAttribute)
+                    {
+                        skip = true;
+                    }
+                }
+                if (!skip) fields.Add(new Field(prop.Info.Name, prop.Info.GetValue(entity)));
             }
             var com = CommandBuilder.InsertCommand(obj.Table, fields);
             return com;
